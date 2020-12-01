@@ -35,16 +35,19 @@ def main():
     force_hold_stick = 0.5 # 棒を握る力を指定
     
     ### 縦
-    tambourine_x_position_vertical = 0.038 # タンバリンの手前のx座標を指定
-    tambourine_y_position_vertical = 0.193 # タンバリンのy座標を指定
-    tambourine_z_position_vertical = 0.150 # タンバリンの少し上のz座標を指定
-    stick_angle_vertical = 3.14 / 4.0 # 棒の角度を指定
+    tambourine_x_position_vertical = 0.043040 # タンバリンの手前のx座標を指定
+    tambourine_y_position_vertical = 0.303386 # タンバリンのy座標を指定
+    tambourine_z_position_vertical = 0.085469  # タンバリンの少し上のz座標を指定
+    stick_angle_vertical = 1.3 # 棒の角度を指定
 
+    """
+    現在縦持ちで仮定しているためコメントアウト
     ### 横
     tambourine_x_position_horizontal = 0.005 # タンバリンの手前のx座標を指定
     tambourine_y_position_horizontal = 0.180 # タンバリンのy座標を指定
     tambourine_z_position_horizontal = 0.141 # タンバリンの少し上のz座標を指定
     stick_angle_horizontal = -3.14 * 9.0 / 10.0 # 棒の角度を指定
+    """
 
     ###
     ### 変数宣言ここまで
@@ -82,7 +85,7 @@ def main():
         target_pose.position.x = tambourine_x_position_vertical
         target_pose.position.y = tambourine_y_position_vertical
         target_pose.position.z = tambourine_z_position_vertical
-        q = quaternion_from_euler(-3.14, 3.14 / 2, -3.14)  # 上方から掴みに行く場合
+        q = quaternion_from_euler(3.14 * 9 / 10, 3.14 / 2, -3.14)  # 上方から掴みに行く場合
         target_pose.orientation.x = q[0]
         target_pose.orientation.y = q[1]
         target_pose.orientation.z = q[2]
@@ -96,7 +99,7 @@ def main():
         target_pose.position.x = tambourine_x_position_vertical
         target_pose.position.y = tambourine_y_position_vertical
         target_pose.position.z = tambourine_z_position_vertical
-        q = quaternion_from_euler(-3.14, stick_angle_vertical, -3.14)  # 上方から掴みに行く場合
+        q = quaternion_from_euler(3.14 * 9 / 10, stick_angle_vertical, -3.14)  # 上方から掴みに行く場合
         target_pose.orientation.x = q[0]
         target_pose.orientation.y = q[1]
         target_pose.orientation.z = q[2]
@@ -104,6 +107,8 @@ def main():
         arm.set_pose_target(target_pose)  # 目標ポーズ設定
         arm.go()  # 実行
 
+    """
+    現在縦持ちで仮定しているためコメントアウト
     # 横持ち
 
     # タンバリンをたたくために位置移動
@@ -133,13 +138,24 @@ def main():
         target_pose.orientation.w = q[3]
         arm.set_pose_target(target_pose)  # 目標ポーズ設定
         arm.go()  # 実行
+    """
 
     # SRDFに定義されている"home"の姿勢にする
     arm.set_named_target("home")
     arm.go()
 
-    #パターン-----1
+    #パターン-----縦持ち
 
+    preparation_vertical()
+    hit_tambourine_vertical()
+    preparation_vertical()
+    hit_tambourine_vertical()
+    preparation_vertical()
+    hit_tambourine_vertical()
+    preparation_vertical()
+    hit_tambourine_vertical()
+    preparation_vertical()
+    hit_tambourine_vertical()
     preparation_vertical()
     hit_tambourine_vertical()
 
@@ -147,14 +163,29 @@ def main():
     arm.set_named_target("home")
     arm.go()
 
-    #パターン-----2
+    """
+    現在縦持ちで仮定しているためコメントアウト
+    #パターン-----横持ち
 
+    preparation_horizontal()
+    hit_tambourine_horizontal()
+    preparation_horizontal()
+    hit_tambourine_horizontal()
+    preparation_horizontal()
+    hit_tambourine_horizontal()
+    preparation_horizontal()
+    hit_tambourine_horizontal()
+    preparation_horizontal()
+    hit_tambourine_horizontal()
+    preparation_horizontal()
+    hit_tambourine_horizontal()
     preparation_horizontal()
     hit_tambourine_horizontal()
 
     move_max_velocity()
     arm.set_named_target("home")
     arm.go()
+    """
 
 if __name__ == '__main__':
 
