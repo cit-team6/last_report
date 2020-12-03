@@ -1,4 +1,4 @@
-# RealSense(TM)を操作する手順
+# RealSense(TM)を動作する手順
 
 ## 概要
 
@@ -10,8 +10,9 @@
   * [概要](#概要)
   * [環境](#環境)
   * [インストール手順](#インストール手順)
-  * [操作手順](#操作手順)
+  * [動作手順](#動作手順)
     * [コード](#コード)
+  * [参考文献](#参考文献)
   * [ライセンス](#ライセンス)
   
 ## 環境
@@ -30,25 +31,31 @@
 
 [deruma.net](https://demura.net/robot/16525.html?fbclid=IwAR0nOSm6AjqzBr9XKlJBnbOrQo_9WXP6ynvVWw4D2tUS67yDh-SiwgAf6o0)
   
-## 操作手順
+## 動作手順
 
-1. alt+T (ターミナルを開く）
+1. ターミナルを起動して、`$ roscore` を実行する
 
-2. `$ roscore` を実行する
+2. 新ターミナルを起動して、`$ roslaunch realsense2_camera rs_camera.launch`を実行する
 
-3. 新ターミナルを起動して、`$ roslaunch realsense2_camera rs_camera.launch`を実行する
+3. 新ターミナルを起動して、`$ cd ~/catkin_ws/src/test/scripts`を実行する
 
-4. 新ターミナルを起動して、`$ cd ~/catkin_ws/src/test/scripts`を実行する
-
-5. 上記のフォルダで`$ python realsense.py`を実行する
+4. 上記のフォルダで`$ python realsense.py`を実行する
 
 ### カメラの画像出力を確認する方法（任意）
+
+`$ roscore`と`$ roslaunch realsense2_camera rs_camera.launch`を実行してから下のコマンドを実行する
 
     $ rosrun rqt_image_view rqt_image_view
     
 ### コード
 
 リンク：[realsense.py](https://github.com/cit-team6/last_report/blob/main/RealSense/realsense.py)
+
+## 参考文献
+
+こちらに書いてある youtubeのアクセスリンクは OpenCV のプログラムの参考である
+
+[LEARN OPENCV in 3 HOURS with Python | Including 3x Example Projects (2020)](https://www.youtube.com/watch?v=WQeoO7MI0Bs&ab_channel=Murtaza%27sWorkshop-RoboticsandAI)
 
 ## ライセンス
 
