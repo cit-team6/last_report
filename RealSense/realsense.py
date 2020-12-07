@@ -33,18 +33,18 @@ def f(a):
   # Define a function to show the image in an OpenCV Window
 def show_image(img):
 	cv2.imshow("Image Window", img)
-      	cv2.waitKey(3)
+	cv2.waitKey(3)
 
   # Define a callback for the Image message
 def image_callback(img_msg):
-      # log some info about the image topic
+	# log some info about the image topic
 	rospy.loginfo(img_msg.header)
 
-      # Try to convert the ROS Image message to a CV2 Image
-      	try:
-        	cv_image = bridge.imgmsg_to_cv2(img_msg, "passthrough")
-      	except CvBridgeError, e:
-          	rospy.logerr("CvBridge Error: {0}".format(e))
+	# Try to convert the ROS Image message to a CV2 Image
+	try:
+		cv_image = bridge.imgmsg_to_cv2(img_msg, "passthrough")
+	except CvBridgeError, e:
+		rospy.logerr("CvBridge Error: {0}".format(e))
 
 
 
@@ -52,11 +52,11 @@ def image_callback(img_msg):
 
 #######################################################################################
 	
-    	img = cv_image    #Imports the image 
+	img = cv_image    #Imports the image 
 
 	img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB) #Opencv Uses BGR instead of RGB, so, to fix the color problem, we change the color channels
 
-    	img = cv2.resize(img,(400, 400)) #Resizes the image width and heioght
+	img = cv2.resize(img,(400, 400)) #Resizes the image width and heioght
 
 	imgGray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY) #Makes the image gray
 
@@ -69,7 +69,7 @@ def image_callback(img_msg):
 	for(x,y,w,h) in faces: #Coordinates of the detected face
 		cv2.rectangle(img,(x,y),(x+w,y+h),(255,255,0),2)  #Draws a rectangle in the defined coordinates
     	
-    	cv2.imshow("Result", img) #Shows the image with the rectangles
+	cv2.imshow("Result", img) #Shows the image with the rectangles
 
 
 	cv2.waitKey(1) #This makes the program to run forever
