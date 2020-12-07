@@ -46,3 +46,11 @@ rosrun crane_x7_examples tambourine.py
 実際の動きは　→　[rink](https://github.com/knr2/tanbari_model/blob/main/25BEA4EE-1060-4554-AE39-268258D0E60F.gif)
 
 ---
+
+## 調整方法
+
+基本的には40行目でアームの高さを調整、41行目の所で角度を調整する。
+他の部分はいじらなくてよい。
+動作した際にアームが高すぎるまたは低すぎる場合は高さで調節、そうでない角度を調整をする。
+
+---
