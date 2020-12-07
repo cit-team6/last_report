@@ -3,11 +3,11 @@
 ## 概要
 
 * このファイルはRealSenseにとってソースコードを書く時に必要になったライブラリーを入れる方法などをまとめる。
-* プロセス：未完成
+* プロセス：完成
 
 ## 目次
 
-  * [概要](#概要)
+	* [概要](#概要)
   * [環境](#環境)
   * [インストール手順](#インストール手順)
   * [動作手順](#動作手順)
@@ -30,7 +30,10 @@
 * RealSense(TM)をインストールする必要なドライバーとライブラリ：
 
 [deruma.net](https://demura.net/robot/16525.html?fbclid=IwAR0nOSm6AjqzBr9XKlJBnbOrQo_9WXP6ynvVWw4D2tUS67yDh-SiwgAf6o0)
-  
+
+* 目を認識させるファイル
+
+[haarcascade_eye.xml](#https://ja.osdn.net/projects/sfnet_magicvisionport/downloads/mvp/cascades/haarcascade_eye.xml/)
 ## 動作手順
 
 1. ターミナルを起動して、`$ roscore` を実行する
