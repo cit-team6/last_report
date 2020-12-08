@@ -12,7 +12,7 @@ class tambourine_text:
     robot = moveit_commander.RobotCommander()
     arm = moveit_commander.MoveGroupCommander("arm")
     gripper = moveit_commander.MoveGroupCommander("gripper")
-
+    run = False
     ###
     ### グローバル宣言
     ###
@@ -40,6 +40,7 @@ class tambourine_text:
 
     def main (self):
         ##rospy.init_node("crane_x7_pick_and_place_controller")
+        self.run = True
 
         self.robot = moveit_commander.RobotCommander()
         self.arm = moveit_commander.MoveGroupCommander("arm")
@@ -139,7 +140,9 @@ class tambourine_text:
         self.arm.set_max_velocity_scaling_factor(self.move_max_velocity_value)
         self.arm.set_named_target("home")
         self.arm.go()
+        
         """
+        self.run = False
         # ハンドを開く/ 閉じる
     def move_gripper(self,pou):
         self.gripper.set_joint_value_target([pou, pou])

@@ -18,6 +18,8 @@ eyes_size = 30
 
 #######################################################################################
 
+
+
 #Funcion vacia
 def f(a):
  pass
@@ -55,17 +57,17 @@ def image_callback(img_msg):
    cv2.rectangle(img,(x,y),(x+w,y+h),(255,255,0),2)	   
  else:
   pub.publish(0)	 
- 
- cv2.imshow("Result", img)
+ #cv2.imshow("Result", img)
  cv2.waitKey(1) #This makes the program to run forever
-
-
+ 
 ###########################################################################################
 rospy.init_node('opencv_pruebacolor1', anonymous=1)
 
 bridge = CvBridge()
 
 pub = rospy.Publisher('opencv_pruebacolor1',Int8,queue_size = 1)
+
+
 
 sub_image = rospy.Subscriber("/camera/color/image_raw", Image, image_callback)
 
