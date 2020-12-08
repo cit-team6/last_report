@@ -9,7 +9,7 @@ import cv2
 from cv_bridge import CvBridge, CvBridgeError
 
 #import rospy
-from std_msgs.msg import Bool
+from std_msgs.msg import Int8
 
 
 #######################################################################################
@@ -45,16 +45,16 @@ def image_callback(img_msg):
 
  imgGray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY) #Makes the image gray
 
- faceCascade = cv2.CascadeClassifier('haarcascade_eye.xml') #This program uses a xml cascade file, this files are trained with some data to recognize different things, in this case, face or eyes
-
- faces = faceCascade.detectMultiScale(imgGray,1.1,4,minSize=(eyes_size, eyes_size)) #Parameters to use for the face/eye recognition
-
+ faceCascade = cv2.CascadeClassifier('/home/tougasakatani/catkin_ws/src/last_report/haarcascade_eye.xml') #This program uses a xml cascade file, this files are trained with some data to recognize different things, in this case, face or eyes
+ 
+ faces = faceCascade.detectMultiScale(imgGray,1.1,4,minSize=(30, 30)) #Parameters to use for the face/eye recognition
+ 
  if len(faces) > 0:
-  pub.publish(True)
+  pub.publish(1)
   for(x,y,w,h) in faces:
    cv2.rectangle(img,(x,y),(x+w,y+h),(255,255,0),2)	   
  else:
-  pub.publish(False)	 
+  pub.publish(0)	 
  
  cv2.imshow("Result", img)
  cv2.waitKey(1) #This makes the program to run forever
@@ -65,7 +65,7 @@ rospy.init_node('opencv_pruebacolor1', anonymous=1)
 
 bridge = CvBridge()
 
-pub = rospy.Publisher('opencv_pruebacolor1',Bool,queue_size = 1)
+pub = rospy.Publisher('opencv_pruebacolor1',Int8,queue_size = 1)
 
 sub_image = rospy.Subscriber("/camera/color/image_raw", Image, image_callback)
 

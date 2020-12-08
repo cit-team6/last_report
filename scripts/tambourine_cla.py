@@ -39,7 +39,7 @@ class tambourine_text:
     ###
 
     def main (self):
-        rospy.init_node("crane_x7_pick_and_place_controller")
+        ##rospy.init_node("crane_x7_pick_and_place_controller")
 
         self.robot = moveit_commander.RobotCommander()
         self.arm = moveit_commander.MoveGroupCommander("arm")
