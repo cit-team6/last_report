@@ -47,16 +47,18 @@ def image_callback(img_msg):
 
  imgGray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY) #Makes the image gray
 
- faceCascade = cv2.CascadeClassifier('/home/tougasakatani/catkin_ws/src/last_report/haarcascade_eye.xml') #This program uses a xml cascade file, this files are trained with some data to recognize different things, in this case, face or eyes
+ eyesCascade = cv2.CascadeClassifier('/home/tougasakatani/catkin_ws/src/last_report/haarcascade_eye.xml') #This program uses a xml cascade file, this files are trained with some data to recognize different things, in this case, face or eyes
+ #facesCascade = cv2.CascadeClassifier('/home/tougasakatani/catkin_ws/src/last_report/haarcascade_frontalface_default.xml') #This program uses a xml cascade file, this files are trained with some data to recognize different things, in this case, face or eyes
  
- faces = faceCascade.detectMultiScale(imgGray,1.1,4,minSize=(30, 30)) #Parameters to use for the face/eye recognition
+ #faces = facesCascade.detectMultiScale(imgGray,1.1,4,minSize=(30, 30)) #Parameters to use for the face/eye recognition
+ eyes = eyesCascade.detectMultiScale(imgGray,1.1,4,minSize=(30, 30))
  
- if len(faces) > 0:
-  pub.publish(1)
-  for(x,y,w,h) in faces:
+ if len(eyes) > 0:
+  pub.publish(1)      
+  for(x,y,w,h) in eyes:
    cv2.rectangle(img,(x,y),(x+w,y+h),(255,255,0),2)	   
-  else:
-   pub.publish(0)	 
+ else:
+  pub.publish(0)	 
  cv2.imshow("Result", img)
  cv2.waitKey(1) #This makes the program to run forever
  
