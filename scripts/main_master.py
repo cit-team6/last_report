@@ -12,7 +12,7 @@ def callback(jadge):
     global n
     global Action_robot
     sum = 0 
-    rospy.sleep(0.3)    
+    #rospy.sleep(0.3)    
     if n >= 50:
         for i in sensor:
             sum += 2*i
@@ -30,18 +30,20 @@ def callback(jadge):
             sensor.append(jadge.data)
             n+=1
 tu = tambourine_cla.tambourine_text()
-
 if __name__ == '__main__':
     rospy.init_node('arm_controll_maneger', anonymous=True)
+    #rospy.Subscriber("opencv_pruebacolor1", Int8, callback)
     while n <= 50:
         if tu.run == False:
-            rospy.Subscriber("opencv_pruebacolor1", Int8, callback)
-            rospy.sleep(1)
-            if Action_robot == True:
-                Action_robot = False
+            s = 0;
+            s = rospy.wait_for_message("opencv_pruebacolor1", Int8)
+            if s.data == 1:
+                n+=1     
+            print ("n=",n)
+            print ("s = ",s.data)
+            print("SSSSSSSSSSSSSSSSSSSSSSSSSSSS")
+            #rospy.sleep(1)
+            if n == 50:
+                #Action_robot = False
                 tu.run = True
                 tu.main()      
-
-    #rospy.spin()
-    print("SSSSSSSSSSSSSSSSSSSSSSSSSSSS")
-    

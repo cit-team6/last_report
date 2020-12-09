@@ -8,7 +8,9 @@ project(last_report)
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
 find_package(catkin REQUIRED COMPONENTS
+  roscpp
   rospy
+  std_msgs
 )
 
 ## System dependencies are found with CMake's conventions
@@ -118,6 +120,11 @@ include_directories(
   ${catkin_INCLUDE_DIRS}
 )
 
+add_executable(main_master_cp   scripts/main_master_cp.cpp)
+
+target_link_libraries(main_master_cp
+  ${catkin_LIBRARIES}
+)
 ## Declare a C++ library
 # add_library(${PROJECT_NAME}
 #   src/${PROJECT_NAME}/last_report.cpp

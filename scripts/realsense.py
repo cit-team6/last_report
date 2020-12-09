@@ -55,9 +55,9 @@ def image_callback(img_msg):
   pub.publish(1)
   for(x,y,w,h) in faces:
    cv2.rectangle(img,(x,y),(x+w,y+h),(255,255,0),2)	   
- else:
-  pub.publish(0)	 
- #cv2.imshow("Result", img)
+  else:
+   pub.publish(0)	 
+ cv2.imshow("Result", img)
  cv2.waitKey(1) #This makes the program to run forever
  
 ###########################################################################################
