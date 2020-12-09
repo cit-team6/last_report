@@ -33,7 +33,8 @@
 
 * 目を認識させるファイル
 
-[haarcascade_eye.xml](https://ja.osdn.net/projects/sfnet_magicvisionport/downloads/mvp/cascades/haarcascade_eye.xml/)
+[haarcascade_eye.xml](https://ja.osdn.net/projects/sfnet_magicvisionport/downloads/mvp/cascades/haarcascade_eye.xml/)  
+[haarcascade_frontalface_default.xml](https://ja.osdn.net/projects/sfnet_magicvisionport/downloads/mvp/cascades/haarcascade_frontalface_default.xml/)
 ## 動作手順
 
 1. ターミナルを起動して、`$ roscore` を実行する
