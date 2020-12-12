@@ -18,7 +18,7 @@ int main(int argc, char** argv)
 
   while(n<=100){
     ros::Rate(0.1);
-    ros::spinOnce();
+    ros::
     std::cout << "ssssssss" << n << std::endl;
   }
   

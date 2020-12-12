@@ -48,7 +48,7 @@ def main():
     #アーム開閉
     gripper.set_joint_value_target([0.1, 0.1])
     gripper.go()
-
+    
     #マネキンまで移動
     def move():
         target_pose = geometry.msg.pose()
@@ -96,11 +96,8 @@ def main():
     arm.set_joint_value_target(target_joint_values)
     arm.go()
 
-
     rospy.sleep(3)
-
   
-
     # SRDFに定義されている"vertical"の姿勢にする
     print("vertical")
     arm.set_named_target("vertical")
