@@ -34,6 +34,8 @@ def main():
 
     force_hold_stick = 0.5 # 棒を握る力を指定
     
+    count = 3 # 叩く回数を指定
+    
     ### 縦
     tambourine_x_position_vertical = 0.043040 # タンバリンの手前のx座標を指定
     tambourine_y_position_vertical = 0.303386 # タンバリンのy座標を指定
@@ -145,19 +147,10 @@ def main():
     arm.go()
 
     #パターン-----縦持ち
-
-    preparation_vertical()
-    hit_tambourine_vertical()
-    preparation_vertical()
-    hit_tambourine_vertical()
-    preparation_vertical()
-    hit_tambourine_vertical()
-    preparation_vertical()
-    hit_tambourine_vertical()
-    preparation_vertical()
-    hit_tambourine_vertical()
-    preparation_vertical()
-    hit_tambourine_vertical()
+    
+    for i in range(count)
+        preparation_vertical()
+        hit_tambourine_vertical()
 
     move_max_velocity()
     arm.set_named_target("home")
