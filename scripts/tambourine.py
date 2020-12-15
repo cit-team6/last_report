@@ -33,8 +33,10 @@ def main():
     stop_time = 2.0  # 停止する時間を指定
 
     force_hold_stick = 0.5 # 棒を握る力を指定
-    
-    count = 3 # 叩く回数を指定
+
+    count = 3 # 何回叩くかを指定
+
+    adjustment = 0.02
     
     ### 縦
     tambourine_x_position_vertical = 0.043040 # タンバリンの手前のx座標を指定
@@ -71,7 +73,7 @@ def main():
         target_pose.position.x = pos_x
         target_pose.position.y = pos_y
         target_pose.position.z = pos_z
-        q = quaternion_from_euler(-3.14/2.0, 3.14, -3.14/2.0)  # 上方から掴みに行く場合
+        q = quaternion_from_euler(-3.14/2.0, 3.14 + 0.1, -3.14/2.0)  # 上方から掴みに行く場合
         target_pose.orientation.x = q[0]
         target_pose.orientation.y = q[1]
         target_pose.orientation.z = q[2]
@@ -83,6 +85,34 @@ def main():
 
     # タンバリンをたたくために位置移動
     def preparation_vertical():
+        target_pose = geometry_msgs.msg.Pose()
+        target_pose.position.x = tambourine_x_position_vertical
+        target_pose.position.y = tambourine_y_position_vertical
+        target_pose.position.z = tambourine_z_position_vertical
+        q = quaternion_from_euler(3.14 * 9 / 10, 3.14 / 2, -3.14)  # 上方から掴みに行く場合
+        target_pose.orientation.x = q[0]
+        target_pose.orientation.y = q[1]
+        target_pose.orientation.z = q[2]
+        target_pose.orientation.w = q[3]
+        arm.set_pose_target(target_pose)  # 目標ポーズ設定
+        arm.go()  # 実行
+    
+    # タンバリンをたたくために位置移動
+    def preparation_vertical_up_little():
+        target_pose = geometry_msgs.msg.Pose()
+        target_pose.position.x = tambourine_x_position_vertical
+        target_pose.position.y = tambourine_y_position_vertical
+        target_pose.position.z = tambourine_z_position_vertical + adjustment
+        q = quaternion_from_euler(3.14 * 9 / 10, 3.14 / 2, -3.14)  # 上方から掴みに行く場合
+        target_pose.orientation.x = q[0]
+        target_pose.orientation.y = q[1]
+        target_pose.orientation.z = q[2]
+        target_pose.orientation.w = q[3]
+        arm.set_pose_target(target_pose)  # 目標ポーズ設定
+        arm.go()  # 実行
+
+    # タンバリンをたたくために位置移動
+    def preparation_vertical_up_down():
         target_pose = geometry_msgs.msg.Pose()
         target_pose.position.x = tambourine_x_position_vertical
         target_pose.position.y = tambourine_y_position_vertical
@@ -147,10 +177,12 @@ def main():
     arm.go()
 
     #パターン-----縦持ち
-    
-    for i in range(count)
+    for i in range(count):
         preparation_vertical()
         hit_tambourine_vertical()
+        preparation_vertical_up_little()
+        rospy.sleep(0.2)
+        preparation_vertical_up_down()
 
     move_max_velocity()
     arm.set_named_target("home")
