@@ -54,6 +54,20 @@ def main():
     arm.set_named_target("home")
     arm.go()
 
+    # 現在角度をベースに、目標角度を作成する
+    target_joint_values = arm.get_current_joint_values()
+
+    for num in range(3):
+        joint_angle = math.radians(45)
+        target_joint_values[5] = joint_angle
+        arm.set_joint_value_target(target_joint_values)
+        arm.go()
+
+        joint_angle = math.radians(0)
+        target_joint_values[5] = joint_angle
+        arm.set_joint_value_target(target_joint_values)
+        arm.go()
+
     # SRDFに定義されている"vertical"の姿勢にする
     print("vertical")
     arm.set_named_target("vertical")
