@@ -51,7 +51,7 @@ roslaunch crane_x7_gazebo crane_x7_with_table.launch
 ・  
 ## プログラムのセットアップ  
 
-・ rt-net様のcrane_x7_rosをインストールしていない方は以下のパッケージをインストールしてください。(インストール済みの方は飛ばしてください)
+・ rt-net様のcrane_x7_rosをインストールしていない方は以下のコマンドを入力してください。(インストール済みの方は飛ばしてください)
 
 ```sh
 cd /catkin_ws/src
@@ -60,7 +60,7 @@ cd /catkin_ws
 catkin_make
 source ~/.bashrc
 ```
-・ このリポジトリをインストールします。
+・ このリポジトリをインストールします。以下のコマンドを入力してください。
 
 ```sh
 cd /catkin_ws/src/crane_x7_ros
@@ -69,3 +69,5 @@ cd /catkin_ws
 catkin_make
 source ~/.bashrc
 ```
+
+# 実行方法
