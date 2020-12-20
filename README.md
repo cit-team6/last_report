@@ -48,7 +48,8 @@ roslaunch crane_x7_gazebo crane_x7_with_table.launch
 # セットアップ方法
 
 ## カメラのセットアップ(Realsenseを使用する場合)  
-・  https://github.com/cit-team6/last_report/blob/main/RealSense/sensor_setup_manual.md
+・  カメラのセットアップや動作方法はこちら
+https://github.com/cit-team6/last_report/blob/main/RealSense/sensor_setup_manual.md
 ## プログラムのセットアップ  
 
 ・ rt-net様のcrane_x7_rosをインストールしていない方は以下のコマンドを入力してください。(インストール済みの方は飛ばしてください)
