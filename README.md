@@ -38,11 +38,11 @@ roslaunch crane_x7_bringup demo.launch fake_execution:=false port:=/dev/ttyUSB1
 ```
 
 ### Gazeboを使う場合
-
+last_reportのフォルダーに入った状態で
 次のコマンドで起動します。実機との接続やcrane_x7_bringupの実行は必要ありません。
 
 ```sh
-roslaunch crane_x7_gazebo crane_x7_with_table.launch
+./exe_test.bash
 ```
 
 # セットアップ方法
@@ -70,4 +70,18 @@ catkin_make
 source ~/.bashrc
 ```
 
-# 実行方法
+# 実行方法  
+・ターミナル上で以下を入力
+```sh
+roscore
+```
+・別のターミナルで以下を入力し
+```sh
+rosrun last_report realsense.py
+```  
+・別のターミナルで以下を入力
+```sh
+rosrun last_report main_master.py
+```  
+
+
