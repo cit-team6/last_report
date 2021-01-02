@@ -53,7 +53,7 @@
     
 ### コード
 
-リンク：[realsense.py](https://github.com/cit-team6/last_report/blob/main/RealSense/realsense.py)
+リンク：[realsense.py](https://github.com/cit-team6/last_report/blob/main/scripts/realsense.py)
 
 ## 参考文献
 
