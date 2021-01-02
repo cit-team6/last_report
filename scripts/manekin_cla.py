@@ -11,6 +11,11 @@ from tf.transformations import quaternion_from_euler
 class manekin_txt:
     run = False    
     def main(self):
+        te_x_position_vertical = 0.3 # x
+        te_y_position_vertical = 0.0 # y
+        te_z_position_vertical = 0.305469  # z
+        stick_angle_vertical = 1.3 # 棒
+
         robot = moveit_commander.RobotCommander()
         arm = moveit_commander.MoveGroupCommander("arm")
         arm.set_max_velocity_scaling_factor(1.0)
@@ -67,18 +72,27 @@ class manekin_txt:
         """
         # SRDFに定義されている"home"の姿勢にする
         print("home")
-        arm.set_named_target("home")
-        arm.go()
-
-        # SRDFに定義されている"vertical"の姿勢にする
-        print("vertical")
         arm.set_named_target("vertical")
         arm.go()
 
+        # SRDFに定義されている"vertical"の姿勢にする
+        target_pose = geometry_msgs.msg.Pose()
+        target_pose.position.x = te_x_position_vertical
+        target_pose.position.y = te_y_position_vertical
+        target_pose.position.z = te_z_position_vertical
+        q = quaternion_from_euler(-3.14/2.0, 3.14/2, -3.14/2.0)  
+        target_pose.orientation.x = q[0]
+        target_pose.orientation.y = q[1]
+        target_pose.orientation.z = q[2]
+        target_pose.orientation.w = q[3]
+        arm.set_pose_target(target_pose)  
+        arm.go()  
+
+        """
         # 現在角度をベースに、目標角度を作成する
         target_joint_values = arm.get_current_joint_values()
         # 各ジョイントの角度を１つずつ変更する
-        joint_angle = math.radians(-90)
+        joint_angle = math.radians(-70)
         target_joint_values[2] = joint_angle
 
         arm.set_joint_value_target(target_joint_values)
@@ -87,7 +101,8 @@ class manekin_txt:
         print math.degrees( arm.get_joint_value_target()[2] ),
         print ", current_joint_values (degrees):",
         print math.degrees( arm.get_current_joint_values()[2] )
-
+        """
+        """
         joint_angle = math.radians(-90)
         target_joint_values[3] = joint_angle
         arm.set_joint_value_target(target_joint_values)
@@ -100,10 +115,13 @@ class manekin_txt:
 
         #rospy.init_node("joint_values_final")
         rospy.sleep(3)
-  
+        """
         # SRDFに定義されている"vertical"の姿勢にする
         print("vertical")
         arm.set_named_target("vertical")
+        arm.go()   
+
+        arm.set_named_target("home")
         arm.go()   
 
         self.run = False

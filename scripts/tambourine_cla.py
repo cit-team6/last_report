@@ -16,16 +16,19 @@ class tambourine_text:
     ###
     ### グローバル宣言
     ###
-    move_max_velocity_value = 0.5
+    move_max_velocity_value = 0.2
 
     stop_time = 2.0  # 停止する時間を指定
-    force_hold_stick = 0.5 # 棒を握る力を指定
+    force_hold_stick = 0.2 # 棒を握る力を指定
     ### 縦
     tambourine_x_position_vertical = 0.043040 # タンバリンの手前のx座標を指定
     tambourine_y_position_vertical = 0.303386 # タンバリンのy座標を指定
     tambourine_z_position_vertical = 0.085469  # タンバリンの少し上のz座標を指定
     stick_angle_vertical = 1.3 # 棒の角度を指定
 
+    tambourine_x_position_vertical1 = 0.043040 # タンバリンの手前のx座標を指定
+    tambourine_y_position_vertical1 = 0.303386 # タンバリンのy座標を指定
+    tambourine_z_position_vertical1 = 0.485469
     """
     現在縦持ちで仮定しているためコメントアウト
     ### 横
@@ -99,8 +102,19 @@ class tambourine_text:
         self.arm.set_named_target("home")
         self.arm.go()
     
-        #パターン-----縦持ち
-    
+        target_pose = geometry_msgs.msg.Pose()
+        target_pose.position.x = self.tambourine_x_position_vertical1
+        target_pose.position.y = self.tambourine_y_position_vertical1
+        target_pose.position.z = self.tambourine_z_position_vertical1
+        q = quaternion_from_euler(3.14 * 9 / 10, 3.14 / 2, -3.14)  # 上方から掴みに行く場合
+        target_pose.orientation.x = q[0]
+        target_pose.orientation.y = q[1]
+        target_pose.orientation.z = q[2]
+        target_pose.orientation.w = q[3]
+        self.arm.set_pose_target(target_pose)  # 目標ポーズ設定
+        self.arm.go()  # 実行
+
+        
         self.preparation_vertical()
         self.hit_tambourine_vertical()
         self.preparation_vertical()
@@ -113,11 +127,29 @@ class tambourine_text:
         self.hit_tambourine_vertical()
         self.preparation_vertical()
         self.hit_tambourine_vertical()
-    
-        self.arm.set_max_velocity_scaling_factor(self.move_max_velocity_value)
+
+        target_pose = geometry_msgs.msg.Pose()
+        target_pose.position.x = self.tambourine_x_position_vertical1
+        target_pose.position.y = self.tambourine_y_position_vertical1
+        target_pose.position.z = self.tambourine_z_position_vertical1
+        q = quaternion_from_euler(3.14 * 9 / 10, 3.14 / 2, -3.14)  # 上方から掴みに行く場合
+        target_pose.orientation.x = q[0]
+        target_pose.orientation.y = q[1]
+        target_pose.orientation.z = q[2]
+        target_pose.orientation.w = q[3]
+        self.arm.set_pose_target(target_pose)  # 目標ポーズ設定
+        self.arm.go()  # 実行
+               
+        # SRDFに定義されている"home"の姿勢にする
         self.arm.set_named_target("home")
         self.arm.go()
     
+ 
+
+        self.arm.set_max_velocity_scaling_factor(self.move_max_velocity_value)
+        self.arm.set_named_target("home")
+        self.arm.go()
+
         """
         現在縦持ちで仮定しているためコメントアウト
         #パターン-----横持ち
